@@ -1,26 +1,63 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!-- <template>
+  <a-input v-model:value="test" />
+  <a-input v-model:value="pass" />
+  <a-button @click="click">sxascbsajcj</a-button>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+<script setup>
+import axios from "axios";
+import { ref } from "vue";
+const test = ref();
+const pass = ref();
+const click = async () => {
+  await axios({
+    method: "POST",
+    url: "http://localhost:8081/account/reg",
+    data: {
+      name: test.value,
+      pwd: pass.value,
+    },
+  }).then((res) => {
+    console.log(res);
+  });
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style></style> -->
+<template>
+  <div>
+    <ul>
+      <li v-for="item in tabs" :key="item.id" @click="nowTab = item.id">
+        {{ item.name }}
+      </li>
+    </ul>
+    <div>
+      <WenZhang v-if="nowTab === 0" />
+      <Liuyang v-if="nowTab === 1" />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import WenZhang from "@/components/WenZhang.vue";
+import Liuyang from "@/components/LiuYan.vue";
+const nowTab = ref(0);
+const tabs = [
+  { id: 0, name: "回复留言" },
+  { id: 1, name: "发布文章" },
+];
+</script>
+
+<style scoped>
+ul {
+  display: flex;
+  height: 40px;
+  background: #66ccff;
+}
+li {
+  list-style: none;
+  margin: 20px;
+  cursor: pointer;
 }
 </style>
