@@ -23,12 +23,12 @@
         multiple="multiple"
         @change="uploadImg($event)"
       />
-      <img src="" alt="图片" ref="img" />
     </a-form-item>
   </a-form>
 </template>
 <script>
 import { defineComponent, reactive, toRaw, ref, onMounted } from "vue";
+import axios from "axios";
 export default defineComponent({
   emits: ["formState"],
   setup(prop, context) {
@@ -40,20 +40,18 @@ export default defineComponent({
       isGhost: false,
       introduction: "",
       biaoqian: "",
-      img: "",
+      img: [],
     });
     const uploadImg = (event) => {
       const file = event.target.files;
-      formState.img = "";
       for (let i = 0; i < file.length; i++) {
-        let reader = new FileReader();
-        if (file) {
-          reader.readAsDataURL(file[i]);
-          console.log(file[i]);
-          reader.onloadend = () => {
-            formState.img = formState.img + reader.result;
-          };
-        }
+        let formData = new FormData();
+        formData.append("wangeditor-uploaded-image", file[i]);
+        axios
+          .post(`http://localhost:8080/wenzi/updatImg`, formData)
+          .then((res) => {
+            formState.img.push(res.data.data[0].url);
+          });
       }
     };
     return {

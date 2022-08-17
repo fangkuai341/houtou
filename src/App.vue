@@ -1,29 +1,3 @@
-<!-- <template>
-  <a-input v-model:value="test" />
-  <a-input v-model:value="pass" />
-  <a-button @click="click">sxascbsajcj</a-button>
-</template>
-
-<script setup>
-import axios from "axios";
-import { ref } from "vue";
-const test = ref();
-const pass = ref();
-const click = async () => {
-  await axios({
-    method: "POST",
-    url: "http://localhost:8081/account/reg",
-    data: {
-      name: test.value,
-      pwd: pass.value,
-    },
-  }).then((res) => {
-    console.log(res);
-  });
-};
-</script>
-
-<style></style> -->
 <template>
   <div>
     <ul>

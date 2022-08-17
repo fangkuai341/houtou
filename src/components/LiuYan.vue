@@ -53,7 +53,7 @@ export default {
     const wenzixinxi = ref(false);
     const editorConfig = { placeholder: "请输入内容...", MENU_CONF: {} };
     editorConfig.MENU_CONF["uploadImage"] = {
-      server: "http://localhost:8081/wenzi/updatImg",
+      server: "http://localhost:8080/wenzi/updatImg",
     };
     // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {
@@ -70,16 +70,18 @@ export default {
     };
     const ok = async () => {
       let id;
+      console.log(biaoDan.value.formState);
+      biaoDan.value.formState.img = JSON.stringify(biaoDan.value.formState.img);
       await axios({
         method: "POST",
-        url: "http://localhost:8081/wenzi/addWenzhang",
+        url: "http://localhost:8080/wenzi/addWenzhang",
         data: biaoDan.value.formState,
       }).then((res) => {
         id = res.data.data;
       });
       await axios({
         method: "POST",
-        url: "http://localhost:8081/wenzi/addWenzhangconcet",
+        url: "http://localhost:8080/wenzi/addWenzhangconcet",
         data: {
           id,
           content: valueHtml.value,
