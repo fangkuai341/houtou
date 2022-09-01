@@ -1,23 +1,21 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   lintOnSave: false,
   devServer: {
-    host: 'localhost',
+    host: "localhost",
     port: 8080,
     open: true,
     proxy: {
-      '/wenzi': {
-        target: 'http://139.224.162.183/',
+      "/wenzi": {
+        target: "http://116.204.65.53/",
         changeOrigin: false,
         ws: false,
       },
-      '/getmsg': {
-        target: 'http://139.224.162.183/',
+      "/getmsg": {
+        target: "http://116.204.65.53/",
         changeOrigin: false,
         ws: false,
-      }
+      },
     },
   },
-}
-)
-
+});
