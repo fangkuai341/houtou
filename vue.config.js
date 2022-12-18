@@ -7,12 +7,12 @@ module.exports = defineConfig({
     open: true,
     proxy: {
       "/wenzi": {
-        target: "http://116.204.65.53/",
+        target: "http://106.55.233.23/",
         changeOrigin: false,
         ws: false,
       },
       "/getmsg": {
-        target: "http://116.204.65.53/",
+        target: "http://106.55.233.23/",
         changeOrigin: false,
         ws: false,
       },
